@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <style>
+        .checked {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        ul li {
+            list-style: none;
+            font-size: 17px;
+            padding: 12px 8px 12px 50px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            background-image: url('https://cdn3.iconfinder.com/data/icons/arrows-160/96/uncheckedV_circle-512.png');
+            background-size: cover;
+            background-position: center;
+            top: 12px;
+            left: 10px;
+        }
+
+        li.checked::before {
+            background-image: url('https://www.pngrepo.com/download/355640/check-circle-solid.png');
+        }
+
+        ul li span {
+            position: absolute;
+            right: 0;
+            top: 5px;
+            width: 40px;
+            height: 40px;
+            font-size: 25px;
+            line-height: 40px;
+            color: rgb(10, 10, 10);
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        ul li span:hover {
+            background: #edeef0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen p-3">
+        <div class="w-full max-w-xl bg-white mt-24 mx-auto mb-5 pt-10 px-8 pb-16  rounded-xl">
+            <h2 class="text-black flex items-center mb-5 text-2xl font-bold">
+                To-Do List <img src="" alt="" class="w-8 ml-2"></h2>
+            <div class="flex items-center justify-between bg-[#edeef0] rounded-xl pl-5 mb-6">
+                <input type="text" id="input-box" placeholder="Add Yout task"
+                    class="flex-1 outline-none bg-[transparent] p-3">
+                <button onclick="addTask()"
+                    class="outline-none border-none py-4 px-12 text-white text-xl cursor-pointer bg-[#ff5945] rounded-xl">Add</button>
+            </div>
+
+            <div>
+                <ul id="list-container"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputBox = document.getElementById("input-box");
+        const listContainer = document.getElementById("list-container");
+
+        function addTask() {
+            if (inputBox.value.trim() === '') {
+                alert("Please Enter your Task!");
+            } else {
+                const li = document.createElement("li");
+                li.textContent = inputBox.value;
+                li.className = "list-none px-12 pt-2 pb-3 select-none cursor-pointer text-xl relative";
+                listContainer.appendChild(li);
+                let span = document.createElement("span")
+                span.innerHTML = "\u00d7"
+                li.appendChild(span)
+            }
+            inputBox.value = '';
+        }
+
+        listContainer.addEventListener("click", function(e){
+            if(e.target.tagName === "LI"){
+                e.target.classList.toggle("checked")
+            }else if(e.target.tagName === "SPAN"){
+                e.target.parentElement.remove()
+            }
+        },false)
+    </script>
+</body>
+
+</html>
