@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,19 +51,20 @@
         ul li span:hover {
             background: #edeef0;
         }
+
     </style>
 </head>
 
 <body>
     <div class="w-full bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen p-3">
-        <div class="w-full max-w-xl bg-white mt-24 mx-auto mb-5 pt-10 px-8 pb-16  rounded-xl">
+        <div id="btn" class="w-full max-w-xl bg-white mt-24 mx-auto mb-5 pt-10 px-8 pb-16  rounded-xl">
             <h2 class="text-black flex items-center mb-5 text-2xl font-bold">
                 To-Do List <img src="" alt="" class="w-8 ml-2"></h2>
             <div class="flex items-center justify-between bg-[#edeef0] rounded-xl pl-5 mb-6">
                 <input type="text" id="input-box" placeholder="Add Yout task"
                     class="flex-1 outline-none bg-[transparent] p-3">
                 <button onclick="addTask()"
-                    class="outline-none border-none py-4 px-12 text-white text-xl cursor-pointer bg-[#ff5945] rounded-xl">Add</button>
+                    class="outline-none border-none py-4 px-10 text-white text-xl cursor-pointer bg-[#ff5945] rounded-xl">Add</button>
             </div>
 
             <div>
