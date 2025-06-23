@@ -1,13 +1,16 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
     <link rel="stylesheet" href="./main.css">
+    <link rel="icon" type="image/png" href="assets/image.png">
     <style>
         .checked {
             text-decoration: line-through;
-            color: gray;
+            color: rgb(250, 4, 4);
         }
 
         ul li {
@@ -17,6 +20,7 @@
             user-select: none;
             cursor: pointer;
             position: relative;
+
         }
 
         li::before {
@@ -44,31 +48,30 @@
             height: 40px;
             font-size: 25px;
             line-height: 40px;
-            color: rgb(10, 10, 10);
+            color: rgb(235, 11, 11);
             text-align: center;
             border-radius: 10px;
         }
 
         ul li span:hover {
-            background: #edeef0;
+            background: rgb(110, 107, 107);
         }
-
     </style>
 </head>
 
 <body>
-    <div class="w-full bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen p-3">
-        <div id="btn" class="w-full max-w-xl bg-white mt-24 mx-auto mb-5 pt-10 px-8 pb-16  rounded-xl">
-            <h2 class="text-black flex items-center mb-5 text-2xl font-bold">
+    <div class="w-full bg-gradient-to-br from-slate-800 via-gray-700 to-slate-900 min-h-screen p-3">
+        <div id="btn" class="w-full max-w-xl bg-gray-800 text-white mt-24 mx-auto mb-5 pt-10 px-8 pb-16  rounded-xl">
+            <h2 class=" text-white flex items-center mb-5 text-3xl font-bold">
                 To-Do List <img src="" alt="" class="w-8 ml-2"></h2>
-            <div class="flex items-center justify-between bg-[#edeef0] rounded-xl pl-5 mb-6">
-                <input type="text" id="input-box" placeholder="Add Yout task"
-                    class="flex-1 outline-none bg-[transparent] p-3">
+            <div class="flex items-center justify-between bg-gray-700 text-white rounded-xl pl-5 mb-6">
+                <input type="text" id="input-box" placeholder="Add your task"
+                    class="flex-1  bg-[transparent] p-3  focus:outline-none">
                 <button onclick="addTask()"
-                    class="outline-none border-none py-4 px-10 text-white text-xl cursor-pointer bg-[#ff5945] rounded-xl">Add</button>
+                    class="outline-none border-none py-4 px-10 bg-teal-500 hover:bg-teal-600 text-2xl cursor-pointer   rounded-xl">Add</button>
             </div>
 
-            <div>
+            <div class="max-h-80 overflow-y-auto overflow-x-hidden scroll-smooth pr-2">
                 <ul id="list-container"></ul>
             </div>
         </div>
@@ -84,7 +87,7 @@
             } else {
                 const li = document.createElement("li");
                 li.textContent = inputBox.value;
-                li.className = "list-none px-12 pt-2 pb-3 select-none cursor-pointer text-xl relative";
+                li.className = "list-none px-12 pt-2 pb-3 select-none cursor-pointer text-xl relative text-lime-300";
                 listContainer.appendChild(li);
                 let span = document.createElement("span")
                 span.innerHTML = "\u00d7"
@@ -94,18 +97,18 @@
             savaData();
         }
 
-        listContainer.addEventListener("click", function(e){
-            if(e.target.tagName === "LI"){
+        listContainer.addEventListener("click", function (e) {
+            if (e.target.tagName === "LI") {
                 e.target.classList.toggle("checked")
                 savaData();
-            }else if(e.target.tagName === "SPAN"){
+            } else if (e.target.tagName === "SPAN") {
                 e.target.parentElement.remove()
                 savaData();
             }
-        },false)
+        }, false)
 
 
-        function savaData(){
+        function savaData() {
             localStorage.setItem("data", listContainer.innerHTML)
         }
 
