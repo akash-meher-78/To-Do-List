@@ -48,13 +48,14 @@
             height: 40px;
             font-size: 25px;
             line-height: 40px;
-            color: rgb(235, 11, 11);
             text-align: center;
+            color: white;
             border-radius: 10px;
         }
 
         ul li span:hover {
-            background: rgb(110, 107, 107);
+            background: rgb(255, 5, 5);
+            color: black;
         }
     </style>
 </head>
@@ -87,7 +88,7 @@
             } else {
                 const li = document.createElement("li");
                 li.textContent = inputBox.value;
-                li.className = "list-none px-12 pt-2 pb-3 select-none cursor-pointer text-xl relative text-lime-300";
+                li.className = "list-none px-12 pt-2 pb-3 select-none cursor-pointer text-xl relative text-lime-500";
                 listContainer.appendChild(li);
                 let span = document.createElement("span")
                 span.innerHTML = "\u00d7"
