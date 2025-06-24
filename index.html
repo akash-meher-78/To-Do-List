@@ -7,7 +7,9 @@
     <title>To Do List</title>
     <link rel="stylesheet" href="./main.css" />
     <link rel="icon" type="image/png" href="assets/image.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .checked {
             text-decoration: line-through;
@@ -21,6 +23,7 @@
             cursor: pointer;
             position: relative;
         }
+
         ul li span {
             position: absolute;
             right: 0;
@@ -43,9 +46,10 @@
 
 <body class="bg-gradient-to-br from-slate-800 via-gray-700 to-slate-900 min-h-screen p-3">
 
-    <div id="btn" class="w-full max-w-xl mx-auto mt-12 mb-5 bg-gray-800 text-white rounded-xl p-5 sm:p-10 transition-all duration-300">
+    <div id="btn"
+        class="w-full max-w-xl mx-auto mt-12 mb-5 bg-gray-800 text-white rounded-xl p-5 sm:p-10 transition-all duration-300">
         <h2 class="flex items-center justify-between text-2xl sm:text-3xl font-bold mb-5">
-            To-Do List  <div id="clock" class="text-center text-white text-xl sm:text-2xl font-semibold mb-4"></div>
+            To-Do List <div id="clock" class="text-center text-white text-xl sm:text-2xl font-semibold mb-4"></div>
         </h2>
 
         <div class="flex flex-col sm:flex-col items-stretch gap-3 bg-gray-700 rounded-xl p-3">
@@ -57,7 +61,7 @@
             </button>
         </div>
 
-        <div class="mt-6 max-h-80 overflow-y-auto pr-2">
+        <div class="mt-6 max-h-90 overflow-y-auto pr-2">
             <ul id="list-container" class="space-y-2 text-sm sm:text-lg text-lime-500"></ul>
         </div>
 
@@ -105,7 +109,13 @@
 
         function updateClock() {
             const now = new Date();
-            let localTime = now.toLocaleTimeString()
+            let localTime = now.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+
             const timeString = `${localTime}`;
 
             document.getElementById("clock").textContent = timeString;
