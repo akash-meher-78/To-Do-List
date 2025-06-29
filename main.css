@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 
-@layer utilities {
-  #checked::before {
-    background-image: url('https://th.bing.com/th/id/OIP.rjri0CWqpRoFjjzwjuLV0AHaHa?o=7rm=3&rs=1&pid=ImgDetMain');
+@layer components {
+  .special-btn{
+    @apply border-none  text-[18px] px-4 py-1 rounded-md bg-teal-500  sm:text-xl hover:bg-teal-600;
   }
 }
 
