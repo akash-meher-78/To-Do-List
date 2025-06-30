@@ -52,31 +52,36 @@
                 font-size: 14px;
             }
         }
+
+        body{
+            background-image: url(./assets/coastline-mountain-pass-road-twilight-sunset-scenery-6016x6016-3798.jpg);
+        }
     </style>
 </head>
 
-<body class="bg-gradient-to-br from-slate-800 via-gray-700 to-slate-900 min-h-screen p-3 font-mono">
-    <div id="btn" class="w-full max-w-xl mx-auto mt-12 mb-5 bg-gray-800 text-white rounded-xl p-5 sm:p-10 transition-all duration-300">
-        <h2 class="flex justify-between text-2xl sm:text-3xl font-bold mb-5">
+<body class="bg-cover bg-center  min-h-screen p-3 font-mono ">
+    <div id="btn" class="w-full max-w-xl mx-auto mt-12 mb-5 bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-white rounded-xl p-5 sm:p-10 transition-all duration-300">
+
+        <h2 class="flex justify-between text-2xl sm:text-3xl font-bold mb-5 ">
             To-Do List <div id="clock" class="text-center text-[rgb(255,255,0)] text-xl sm:text-2xl font-semibold mb-4"></div>
         </h2>
-        <div class="flex flex-col sm:flex-col items-stretch gap-3 bg-gray-700 rounded-xl p-3">
+        <div class="flex flex-col sm:flex-col items-stretch gap-3 bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-black rounded-xl p-3">
             <input type="text" id="input-box" placeholder="Add your task"
-                class="flex-1 bg-transparent text-white text-base sm:text-lg focus:outline-none" />
+                class="flex-1 bg-transparent text-black text-base sm:text-lg focus:outline-none" />
             <button onclick="addTask()"
-                class="bg-teal-500  hover:bg-[#0048ff5e] hover:text-black hover:outline hover:outline-slate-900 text-white text-lg sm:text-2xl font-medium py-2 px-5 rounded-xl">
+                class="bg-teal-500  hover:bg-teal-600 hover:text-black hover:outline hover:outline-slate-900 text-white text-lg sm:text-2xl font-medium py-2 px-5 rounded-xl">
                 Add
             </button>
         </div>
 
-        <div class="flex justify-around mt-3 font-mono cursor-pointer bg-gray-700 py-3 px-1 rounded-lg">
+        <div class="flex justify-around mt-3 font-mono cursor-pointer bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-white py-3 px-1 rounded-lg">
             <button class="special-btn" id="show-all">All</button>
             <button class="special-btn" id="show-ongoing">Ongoing</button>
             <button class="special-btn" id="show-completed">Completed</button>
         </div>
 
         <div class="mt-6 max-h-90 overflow-y-auto pr-2">
-            <ul id="list-container" class="space-y-2 text-sm sm:text-lg text-lime-500">
+            <ul id="list-container" class="space-y-2 text-sm sm:text-lg text-white font-semibold">
             </ul>
         </div>
 

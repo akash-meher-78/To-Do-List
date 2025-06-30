@@ -5,7 +5,7 @@
 
 @layer components {
   .special-btn{
-    @apply border-none  text-[18px] px-4 py-1 rounded-md bg-teal-500  sm:text-xl hover:bg-[#0048ff5e] hover:text-black hover:outline hover:outline-slate-900;
+    @apply border-none  text-[18px]  px-4 py-1 rounded-md bg-teal-500  sm:text-xl hover:bg-teal-600 hover:text-black hover:outline hover:outline-slate-900;
   }
 }
 
