@@ -2,181 +2,199 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do List</title>
-    <link rel="stylesheet" href="./main.css" />
-    <link rel="icon" type="image/png" href="assets/image.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .checked {
-            text-decoration: line-through;
-            color: rgb(7, 7, 7);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Do List</title>
+  <link rel="stylesheet" href="./main.css" />
+  <link rel="icon" type="image/png" href="assets/image.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .checked {
+      text-decoration: line-through;
+      color: rgb(7, 7, 7);
+    }
 
-        ul li {
-            list-style: none;
-            padding: 12px 8px 12px 50px;
-            user-select: none;
-            cursor: pointer;
-            position: relative;
-        }
+    ul li {
+      list-style: none;
+      padding: 12px 8px 12px 50px;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+    }
 
-        ul li span {
-            position: absolute;
-            right: 0;
-            top: 5px;
-            width: 40px;
-            height: 40px;
-            font-size: 25px;
-            line-height: 40px;
-            text-align: center;
-            color: white;
-            border-radius: 10px;
-        }
+    ul li span {
+      position: absolute;
+      right: 0;
+      top: 5px;
+      width: 40px;
+      height: 40px;
+      font-size: 25px;
+      line-height: 40px;
+      text-align: center;
+      color: white;
+      border-radius: 10px;
+    }
 
-        ul li span:hover {
-            background: rgb(255, 5, 5);
-            color: black;
-        }
+    ul li span:hover {
+      background: rgb(255, 5, 5);
+      color: black;
+    }
 
-        @media (max-width: 320px) {
-            .special-btn {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
+    @media (max-width: 320px) {
+      .special-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
 
-            #input-box {
-                font-size: 14px;
-            }
-        }
+      #input-box {
+        font-size: 14px;
+      }
+    }
 
-        body{
-            background-image: url(./assets/coastline-mountain-pass-road-twilight-sunset-scenery-6016x6016-3798.jpg);
-        }
-    </style>
+    body {
+      background-image: url(./assets/coastline-mountain-pass-road-twilight-sunset-scenery-6016x6016-3798.jpg);
+    }
+  </style>
 </head>
 
-<body class="bg-cover bg-center  min-h-screen p-3 font-mono ">
-    <div id="btn" class="w-full max-w-xl mx-auto mt-12 mb-5 bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-white rounded-xl p-5 sm:p-10 transition-all duration-300">
+<body class="bg-cover bg-center min-h-screen p-3 font-mono">
+  <div
+    id="btn"
+    class="w-full max-w-xl mx-auto mt-12 mb-5 max-h-[90vh] flex flex-col bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-white rounded-xl p-5 sm:p-10 transition-all duration-300"
+  >
+    <h2 class="flex justify-between text-2xl sm:text-3xl font-bold mb-5">
+      To-Do List
+      <div
+        id="clock"
+        class="text-center text-[rgb(255,255,0)] text-xl sm:text-2xl font-semibold mb-4"
+      ></div>
+    </h2>
 
-        <h2 class="flex justify-between text-2xl sm:text-3xl font-bold mb-5 ">
-            To-Do List <div id="clock" class="text-center text-[rgb(255,255,0)] text-xl sm:text-2xl font-semibold mb-4"></div>
-        </h2>
-        <div class="flex flex-col sm:flex-col items-stretch gap-3 bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-black rounded-xl p-3">
-            <input type="text" id="input-box" placeholder="Add your task"
-                class="flex-1 bg-transparent text-black text-base sm:text-lg focus:outline-none placeholder:text-black" />
-            <button onclick="addTask()"
-                class="bg-teal-500  hover:bg-teal-600 hover:text-black hover:outline hover:outline-slate-900 text-white text-lg sm:text-2xl font-medium py-2 px-5 rounded-xl">
-                Add
-            </button>
-        </div>
-
-        <div class="flex justify-around mt-3 font-mono cursor-pointer bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-white py-3 px-1 rounded-lg">
-            <button class="special-btn" id="show-all">All</button>
-            <button class="special-btn" id="show-ongoing">Ongoing</button>
-            <button class="special-btn" id="show-completed">Completed</button>
-        </div>
-
-        <div class="mt-6 max-h-90 overflow-y-auto pr-2">
-            <ul id="list-container" class="space-y-2 text-sm sm:text-lg text-white font-semibold">
-            </ul>
-        </div>
-
+    <div
+      class="flex flex-col items-stretch gap-3 bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-black rounded-xl p-3"
+    >
+      <input
+        type="text"
+        id="input-box"
+        placeholder="Add your task"
+        class="flex-1 bg-transparent text-black text-base sm:text-lg focus:outline-none placeholder:text-black"
+      />
+      <button
+        onclick="addTask()"
+        class="bg-teal-500 hover:bg-teal-600 hover:text-black hover:outline hover:outline-slate-900 text-white text-lg sm:text-2xl font-medium py-2 px-5 rounded-xl"
+      >
+        Add
+      </button>
     </div>
 
-    <script>
-        const inputBox = document.getElementById("input-box");
-        const listContainer = document.getElementById("list-container");
-        const btnAll = document.getElementById("show-all");
-        const btnOngoing = document.getElementById("show-ongoing");
-        const btnCompleted = document.getElementById("show-completed");
+    <div
+      class="flex justify-around mt-3 font-mono cursor-pointer bg-white/10 backdrop-blur-md border border-white/30 shadow-lg text-white py-3 px-1 rounded-lg"
+    >
+      <button class="special-btn" id="show-all">All</button>
+      <button class="special-btn" id="show-ongoing">Ongoing</button>
+      <button class="special-btn" id="show-completed">Completed</button>
+    </div>
 
-        function addTask() {
-            if (inputBox.value.trim() === '') {
-                alert("Please Enter your Task!");
-            } else {
-                const li = document.createElement("li");
-                li.textContent = inputBox.value;
-                li.className = "px-10 pt-2 pb-3 select-none cursor-pointer text-base sm:text-xl relative";
-                listContainer.appendChild(li);
+    <!-- ✅ Scrollable list container -->
+    <div class="mt-6 overflow-y-auto pr-2 flex-1">
+      <ul
+        id="list-container"
+        class="space-y-2 text-sm sm:text-lg text-white font-semibold"
+      ></ul>
+    </div>
+  </div>
 
-                const span = document.createElement("span");
-                span.innerHTML = "\u00d7";
-                li.appendChild(span);
-            }
-            inputBox.value = '';
-            saveData();
+  <script>
+    const inputBox = document.getElementById("input-box");
+    const listContainer = document.getElementById("list-container");
+    const btnAll = document.getElementById("show-all");
+    const btnOngoing = document.getElementById("show-ongoing");
+    const btnCompleted = document.getElementById("show-completed");
+
+    function addTask() {
+      if (inputBox.value.trim() === '') {
+        alert("Please Enter your Task!");
+      } else {
+        const li = document.createElement("li");
+        li.textContent = inputBox.value;
+        li.className =
+          "px-10 pt-2 pb-3 select-none cursor-pointer text-base sm:text-xl relative";
+        listContainer.appendChild(li);
+
+        const span = document.createElement("span");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+      }
+      inputBox.value = '';
+      saveData();
+    }
+
+    listContainer.addEventListener("click", function (e) {
+      if (e.target.tagName === "LI") {
+        e.target.classList.toggle("checked");
+        saveData();
+      } else if (e.target.tagName === "SPAN") {
+        e.target.parentElement.remove();
+        saveData();
+      }
+    });
+
+    btnAll.addEventListener("click", () => {
+      const tasks = listContainer.querySelectorAll("li");
+      tasks.forEach(task => task.style.display = "block");
+      saveData();
+    });
+
+    btnOngoing.addEventListener("click", () => {
+      const tasks = listContainer.querySelectorAll("li");
+      tasks.forEach(task => {
+        if (task.classList.contains("checked")) {
+          task.style.display = "none";
+        } else {
+          task.style.display = "block";
         }
+        saveData();
+      });
+    });
 
-        listContainer.addEventListener("click", function (e) {
-            if (e.target.tagName === "LI") {
-                e.target.classList.toggle("checked");
-                saveData();
-            } else if (e.target.tagName === "SPAN") {
-                e.target.parentElement.remove();
-                saveData();
-            }
-        });
-
-        btnAll.addEventListener("click", () => {
-            const tasks = listContainer.querySelectorAll("li");
-            tasks.forEach(task => task.style.display = "block");
-            saveData();
-        });
-
-        btnOngoing.addEventListener("click", () => {
-            const tasks = listContainer.querySelectorAll("li");
-            tasks.forEach(task => {
-                if (task.classList.contains("checked")) {
-                    task.style.display = "none";
-                } else {
-                    task.style.display = "block";
-                }
-                saveData();
-            });
-        });
-
-        btnCompleted.addEventListener("click", () => {
-            const tasks = listContainer.querySelectorAll("li");
-            tasks.forEach(task => {
-                if (task.classList.contains("checked")) {
-                    task.style.display = "block";
-                } else {
-                    task.style.display = "none";
-                }
-                saveData();
-            });
-        });
-
-        function saveData() {
-            localStorage.setItem("data", listContainer.innerHTML);
+    btnCompleted.addEventListener("click", () => {
+      const tasks = listContainer.querySelectorAll("li");
+      tasks.forEach(task => {
+        if (task.classList.contains("checked")) {
+          task.style.display = "block";
+        } else {
+          task.style.display = "none";
         }
+        saveData();
+      });
+    });
 
-        function showLocalData() {
-            listContainer.innerHTML = localStorage.getItem("data");
-        }
-        showLocalData();
+    function saveData() {
+      localStorage.setItem("data", listContainer.innerHTML);
+    }
 
-        function updateClock() {
-            const now = new Date();
-            let localTime = now.toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            });
+    function showLocalData() {
+      listContainer.innerHTML = localStorage.getItem("data");
+    }
 
-            const timeString = `${localTime}`;
+    showLocalData();
 
-            document.getElementById("clock").textContent = timeString;
-        }
+    function updateClock() {
+      const now = new Date();
+      let localTime = now.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+      document.getElementById("clock").textContent = localTime;
+    }
 
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 </body>
 
 </html>
